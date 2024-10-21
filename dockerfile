@@ -1,24 +1,20 @@
-# Use an official Golang runtime as the base image
-FROM golang:1.19-alpine
+# Use the Go base image
+FROM golang:alpine
 
-# Set the working directory inside the container
+# Install curl
+RUN apk add --no-cache curl
+
+# Set the working directory
 WORKDIR /app
 
-# Copy the go.mod and go.sum files
-COPY go.mod go.sum ./
-
-# Download Go dependencies
-RUN go mod download
-
-# Copy the rest of the application code
+# Copy the Go code into the container
 COPY . .
 
 # Build the Go application
-RUN go build -o datetime-app .
+RUN go build -o main .
 
-# Expose port 8080 for the app to run
+# Expose the port
 EXPOSE 8080
 
-# Run the Go app
-CMD ["./datetime-app"]
- 
+# Run the application
+CMD ["./main"]

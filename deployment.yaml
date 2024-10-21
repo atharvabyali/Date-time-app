@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: datetime-app
-        image: <dockerhub-username>/datetime-app:latest
+        image: byaliatharva/date-time-app:latest  # Make sure this is correct
         ports:
         - containerPort: 8080
